@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | RadioCenter Premium</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="auth-brand" style="justify-content: flex-start; margin-bottom: 2rem;">
+                <div class="logo-box">RC</div>
+                <span>RadioCenter</span>
+            </div>
+
+            <nav class="nav-menu">
+                <li class="nav-item active" onclick="showSection('overview')">
+                    <a class="nav-link">
+                        <span class="icon">📊</span>
+                        <span>Tableau de Bord</span>
+                    </a>
+                </li>
+                <li class="nav-item" onclick="showSection('patients')">
+                    <a class="nav-link">
+                        <span class="icon">👥</span>
+                        <span>Patients</span>
+                    </a>
+                </li>
+                <li class="nav-item" onclick="showSection('planning')">
+                    <a class="nav-link">
+                        <span class="icon">📅</span>
+                        <span>Planning</span>
+                    </a>
+                </li>
+                <li class="nav-item" onclick="showSection('billing')">
+                    <a class="nav-link">
+                        <span class="icon">💳</span>
+                        <span>Facturation</span>
+                    </a>
+                </li>
+                <li class="nav-item" onclick="showSection('inventory')">
+                    <a class="nav-link">
+                        <span class="icon">📦</span>
+                        <span>Stock</span>
+                    </a>
+                </li>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div style="margin-bottom: 1rem;">
+                    <select onchange="switchRole(this.value)" class="form-input" style="background: var(--bg-card); font-size: 0.8rem; padding: 0.5rem;">
+                        <option value="admin">Admin: Jean Dupont</option>
+                        <option value="radiologue">Radiologue: Sarah Alami</option>
+                        <option value="secretaire">Secrétaire: Sofia Bennani</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="toggleTheme()" style="background: var(--bg-card); color: var(--text-main); margin-bottom: 0.5rem;">
+                    <span id="theme-icon">☀️</span> <span id="theme-text">Mode Clair</span>
+                </button>
+                <button class="btn btn-primary" onclick="logout()" style="background: rgba(239, 68, 68, 0.1); color: var(--danger);">
+                    <span>🚪 Déconnexion</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <h1 id="section-title">Tableau de Bord</h1>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;" id="section-subtitle">Bienvenue, <span id="user-display-name">Chargement...</span></p>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-primary" onclick="openModal('new-patient')">+ Nouveau Patient</button>
+                </div>
+            </header>
+
+            <div id="content-area">
+                <!-- Content injected by app.js -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="auth-page hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);">
+        <div class="auth-card" id="modal-container" style="max-width: 500px;">
+            <!-- Modal Content -->
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

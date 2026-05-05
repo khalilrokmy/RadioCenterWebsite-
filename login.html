@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | RadioCenter Premium</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="auth-page">
+    <div class="auth-card">
+        <header>
+            <div class="auth-brand">
+                <div class="logo-box">RC</div>
+                <span>RadioCenter</span>
+            </div>
+            <h1 class="auth-title">Bon retour parmi nous</h1>
+            <p class="auth-subtitle">Accédez à votre espace de gestion radiologique</p>
+        </header>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label class="form-label" for="username">Identifiant</label>
+                <input type="text" id="username" class="form-input" placeholder="ex: dr.dupont" required autofocus>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="password">Mot de passe</label>
+                <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--text-muted); cursor: pointer;">
+                    <input type="checkbox"> Se souvenir de moi
+                </label>
+                <a href="#" style="color: var(--primary); font-size: 0.875rem; text-decoration: none; font-weight: 500;">Oublié ?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <span>Se connecter</span>
+                <span class="icon">→</span>
+            </button>
+        </form>
+
+        <footer style="margin-top: 2rem; font-size: 0.875rem; color: var(--text-muted);">
+            Pas encore de compte ? <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Contacter l'administrateur</a>
+        </footer>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+    <script>
+        // Specific login page logic if not in app.js
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            // Mock authentication
+            if ((user === 'admin' && pass === 'admin') || (user === 'user' && pass === 'user')) {
+                localStorage.setItem('rc_auth', 'true');
+                localStorage.setItem('rc_user', user);
+                window.location.href = 'index.html';
+            } else {
+                showToast('Identifiants incorrects. Essayer admin/admin', 'error');
+            }
+        });
+
+        // Check if already logged in
+        if (localStorage.getItem('rc_auth') === 'true') {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
