@@ -14,8 +14,10 @@
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --border: rgba(255, 255, 255, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --info: #3b82f6;
 }
 
 * {
@@ -29,6 +31,11 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: 'Outfit', sans-serif;
 }
 
 /* Auth Pages */
@@ -37,7 +44,8 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent);
+    background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent),
+                radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.05), transparent);
 }
 
 .auth-card {
@@ -48,6 +56,72 @@ body {
     backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 24px;
+    text-align: center;
+}
+
+.auth-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.auth-brand .logo-box {
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.auth-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-light);
 }
 
 /* Main Dashboard Layout */
@@ -73,12 +147,71 @@ body {
     padding: 2rem 3rem;
 }
 
-/* UI Elements */
+.nav-menu {
+    list-style: none;
+    margin-top: 2rem;
+    flex-grow: 1;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    border-radius: 10px;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.nav-item.active .nav-link {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.sidebar-footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Stats Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
 .stat-card {
     background: var(--bg-card);
     padding: 1.5rem;
     border-radius: 20px;
     border: 1px solid var(--border);
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.875rem;
 }
 
 .btn-primary {
@@ -89,4 +222,13 @@ body {
     border: none;
     cursor: pointer;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.table-container {
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
 }
